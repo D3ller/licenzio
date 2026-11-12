@@ -1,0 +1,14 @@
+[
+  {
+    "label": "Debug C",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "$ZED_DIRNAME/a.out",
+    "cwd": "$ZED_DIRNAME",
+    "args": ["-h"],
+    "build": {
+      "command": "cc -g -Wall -Wextra -Werror *.c -o a.out",
+      "cwd": "$ZED_DIRNAME"
+    }
+  }
+]
