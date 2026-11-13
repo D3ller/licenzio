@@ -2,23 +2,22 @@
 #include <string.h>
 #include <stdlib.h>
 
-#include "licenzio.h"
-#include "command.h"
-#include "utils.h"
+#include "includes/licenzio.h"
+#include "includes/command.h"
+#include "includes/license.h"
 
 int main(int argsc, char *argv[]) {
 
   if (argsc <= 1) {
-    printf("Wrong arguments. Use '-h' or '--help' for usage information.\n");
+    fprintf(stderr, "Wrong arguments. Use '-h' or '--help' for usage information.\n");
     return 1;
   }
 
   char *firstArgs = argv[1];
 
-  int licenseCount;
-  struct License *licenseList = get_available_license(&licenseCount);
-  if (licenseList == NULL)
-      return 1;
+  size_t licenseCount;
+  const struct License *licenseList = get_available_license(&licenseCount);
+
 
   if (strcmp(firstArgs, "--help") == 0 || strcmp(firstArgs, "-h") == 0) {
     generate_help(licenseList, licenseCount);
@@ -31,15 +30,13 @@ int main(int argsc, char *argv[]) {
     const struct License *found =
         find_license(licenseList, licenseCount, argv[1]);
     if (found == NULL) {
-      printf("The provided string doesn't match any supported license.\nUse "
+      fprintf(stderr, "The provided string doesn't match any supported license.\nUse "
              "'-h' or '--help' for usage information.\n");
-      free(licenseList);
       return 1;
     } else {
-        printf("%s\n", (found)->license_description);
+        if(createLicenseFile(found) != 0) return 1;
     }
   }
 
-  free(licenseList);
   return 0;
 }
