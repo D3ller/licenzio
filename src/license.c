@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <limits.h>
 
 #include "../includes/licenzio.h"
 #include "../includes/license.h"
@@ -38,11 +39,25 @@ const struct License *get_available_license(size_t *c) {
   return licenses;
 }
 
-int createLicenseFile(const struct License *license) {
+int createLicenseFileAt(const struct License *license, char *output_path) {
+    char path[PATH_MAX];
+    int ret;
+   
+   ret = snprintf(path, sizeof(path), "%s/%s", output_path, "LICENSE");
+
+    if(ret < 0 || ret >= (int)sizeof(path)) {
+        perror("OUTPUT TOO LONG");
+        return -1;
+    }
+
+    return createLicenseFile(license, path);
+    }
+
+int createLicenseFile(const struct License *license, char *output_path) {
 
   FILE *out;
 
-  out = fopen("LICENSE", "w");
+  out = fopen(output_path, "w");
   if (out == NULL) {
     perror("LICENSE");
     return -1;
