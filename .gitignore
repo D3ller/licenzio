@@ -3,3 +3,4 @@
 *.out.*
 licenzio
 includes/templates.h
+.DS_STORE
