@@ -46,7 +46,7 @@ int createLicenseFileAt(const struct License *license, char *output_path) {
    ret = snprintf(path, sizeof(path), "%s/%s", output_path, "LICENSE");
 
     if(ret < 0 || ret >= (int)sizeof(path)) {
-        perror("OUTPUT TOO LONG");
+        fprintf(stderr, "Output path is too long, please retry");
         return -1;
     }
 
