@@ -15,7 +15,7 @@ licenzio -l # List the available licenses
 
 - [x] Create the file when the license is selected.
 - [ ] Add the possibility to replace mustache tag by whathever you want.
-- [ ] Choose the output for the file.
+- [x] Choose the output for the file.
 
 ## Build 
 
