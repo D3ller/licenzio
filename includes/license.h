@@ -9,7 +9,9 @@ const struct License *get_available_license(size_t *c);
 const struct License *find_license(const struct License licenses[],
                                    size_t count, const char *license_name);
 
-int createLicenseFile(const struct License *license);
+int createLicenseFile(const struct License *license, char *output_path);
+
+int createLicenseFileAt(const struct License *license, char *output_path);
 
 
 #endif
