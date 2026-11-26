@@ -11,6 +11,16 @@ licenzio apache -o /Users/corentin # Create the license Apache in /Users/corenti
 licenzio -l # List the available licenses
 ```
 
+## Install 
+
+**macOS**
+
+Run this command:
+```bash
+bash scripts/install.sh
+# This install in the cli in ~/.local/bin
+```
+
 ## Todo 
 
 - [x] Create the file when the license is selected.
